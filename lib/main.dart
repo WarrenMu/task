@@ -1,34 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:task/firebase_options.dart';
-import 'package:task/screens/add_note.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:task/screens/home.dart';
 import 'package:task/screens/signIn.dart';
+import 'package:task/screens/splash.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  runApp(const MyApp());
-}
+void main() => runApp(Phoenix(child: MyApp()));
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Note Taking App',
+      title: 'Task Manager',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
-      initialRoute: '/signIn',
+      home: SplashScreen(), // Use SplashScreen as the initial screen
       routes: {
         '/signIn': (context) => SignInScreen(),
         '/home': (context) => HomeScreen(),
-        '/addNote': (context) => AddNoteScreen(),
       },
     );
   }
