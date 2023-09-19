@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'package:task/models/note.dart';
 
 class NoteState extends ChangeNotifier {
-  List<Note> _notes = [];
+  final List<Note> _notes = [];
   bool _isLoggedIn = false;
 
   List<Note> get notes => _notes;

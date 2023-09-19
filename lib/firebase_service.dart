@@ -34,7 +34,7 @@ class FirebaseService {
   Stream<List<Note>> getNotesFromFirestore() {
     return _firestore.collection('notes').snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
-        final data = doc.data() as Map<String, dynamic>;
+        final data = doc.data();
         return Note(
           id: doc.id,
           title: data['title'] ?? '',
