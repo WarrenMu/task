@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:task/screens/home.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:task/firebase_options.dart';
 import 'package:task/screens/signIn.dart';
 import 'package:task/screens/splash.dart';
 
-void main() => runApp(Phoenix(child: MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+
+  );
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Task Manager',
+      title: 'Your App Name',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(), // Use SplashScreen as the initial screen
+      initialRoute: '/splash', // Set the initial route to the splash screen
       routes: {
+        '/splash': (context) => SplashScreen(), // Route to SplashScreen
         '/signIn': (context) => SignInScreen(),
-        '/home': (context) => HomeScreen(),
       },
     );
   }
